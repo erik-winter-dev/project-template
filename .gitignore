@@ -1,0 +1,39 @@
+# Zugangsdaten und lokale Konfiguration: NIE ins Repo
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.pfx
+secrets/
+appsettings.json
+appsettings.Development.json
+appsettings.Production.json
+
+# Build-Ausgaben und Abhängigkeiten
+bin/
+obj/
+node_modules/
+dist/
+build/
+target/
+__pycache__/
+.venv/
+venv/
+coverage/
+
+# Editor und System
+.vs/
+.idea/
+*.user
+*.suo
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Lokale Einstellungen von Claude Code
+.claude/settings.local.json
+
+# Logs
+*.log
+logs/

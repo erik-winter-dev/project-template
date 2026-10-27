@@ -1,0 +1,18 @@
+#!/bin/sh
+# Pre-Commit-Hook: Secret-Scan über die vorgemerkten Änderungen.
+#
+# Zweck:    Verhindert, dass Zugangsdaten (Passwörter, Tokens, Schlüssel) ins Repo gelangen.
+# Eingaben: keine (liest den Index über gitleaks --staged).
+# Ausgabe:  Exit-Code 0 = Commit erlaubt, 1 = Commit blockiert.
+#
+# Warum blockieren statt warnen: Ein einmal committetes Geheimnis bleibt in der Historie
+# und muss dann geändert werden. Vorbeugen ist billiger.
+
+if ! command -v gitleaks >/dev/null 2>&1; then
+  echo "Commit abgebrochen: gitleaks nicht gefunden." >&2
+  echo "Installation (Windows): winget install --id Gitleaks.Gitleaks -e" >&2
+  exit 1
+fi
+
+# --redact: Fundstellen werden maskiert ausgegeben, damit das Geheimnis nicht im Terminal landet.
+gitleaks git --pre-commit --staged --redact --no-banner -v

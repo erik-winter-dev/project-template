@@ -1,0 +1,23 @@
+#!/bin/sh
+# Commit-Msg-Hook: prüft die erste Zeile auf Conventional Commits (Englisch).
+#
+# Zweck:    Einheitliche Commit-Meldungen, aus denen Changelog und Version abgeleitet werden.
+# Eingaben: $1 = Pfad zur Datei mit der Commit-Meldung (von Git übergeben).
+# Ausgabe:  Exit-Code 0 = Meldung ok, 1 = Commit blockiert.
+
+first_line=$(head -n 1 "$1")
+
+# Von Git selbst erzeugte Meldungen (Merge, Revert, fixup/squash) durchlassen.
+case "$first_line" in
+  Merge\ *|Revert\ *|fixup!\ *|squash!\ *) exit 0 ;;
+esac
+
+pattern='^(feat|fix|docs|style|refactor|perf|test|build|ci|chore|revert)(\([a-z0-9._-]+\))?!?: .{1,72}$'
+
+if ! printf '%s\n' "$first_line" | grep -Eq "$pattern"; then
+  echo "Commit abgebrochen: Die Meldung muss 'type(scope): description' entsprechen." >&2
+  echo "Typen: feat fix docs style refactor perf test build ci chore revert" >&2
+  echo "Sprache: Englisch, Beschreibung maximal 72 Zeichen." >&2
+  echo "Beispiel: feat(scanner): add JSON-LD price fallback" >&2
+  exit 1
+fi

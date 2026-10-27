@@ -1,0 +1,9 @@
+# Zeilenenden automatisch normalisieren.
+* text=auto
+
+# Shell-Skripte und Git-Hooks müssen LF behalten, weil sie unter Linux/sh laufen.
+# Mit CRLF bricht der Hook unter Windows mit einem schwer lesbaren Fehler ab.
+*.sh text eol=lf
+.githooks/* text eol=lf
+*.yml text eol=lf
+*.yaml text eol=lf
