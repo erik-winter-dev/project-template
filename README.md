@@ -13,6 +13,7 @@
 | `docs/` | Dokumentation, Entscheidungen (ADR) und Lerntagebuch |
 | `.githooks/` | Commit-Hooks (Secret-Scan, Commit-Meldung) |
 | `.github/` | Workflows und Vorlage für Pull Requests |
+| `scripts/` | Hilfsskripte, z. B. `protect-main.ps1` (Branch-Schutz) |
 
 ## Schnellstart
 

@@ -8,4 +8,4 @@ Die Einträge werden aus den Conventional Commits abgeleitet.
 
 ### Added
 
-- Repo-Vorlage: `RULES.md`, `CLAUDE.md`, `README.md`, Commit-Hooks (Secret-Scan mit gitleaks, Prüfung auf Conventional Commits), Workflow `secret-scan`, Vorlage für Pull Requests, `docs/` mit ADR- und Lerntagebuch-Vorlage.
+- Repo-Vorlage: `RULES.md`, `CLAUDE.md`, `README.md`, Commit-Hooks (Secret-Scan mit gitleaks, Prüfung auf Conventional Commits), Workflow `secret-scan`, Vorlage für Pull Requests, `docs/` mit ADR- und Lerntagebuch-Vorlage, Skript `scripts/protect-main.ps1` für den Branch-Schutz.

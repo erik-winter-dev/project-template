@@ -9,7 +9,7 @@ Diese Anleitung steht in jedem Projekt, das aus der Vorlage entsteht. Sie wird n
 3. **Hooks aktivieren** (einmal pro Klon): `git config core.hooksPath .githooks`.
 4. **Platzhalter ersetzen:** In `README.md`, `CLAUDE.md` und `docs/index.md` alle Stellen in spitzen Klammern (`<...>`) ausfüllen oder löschen.
 5. **Lizenz entscheiden:** Ohne `LICENSE`-Datei gilt „Alle Rechte vorbehalten“. Für ein öffentliches Portfolio-Projekt ist die MIT-Lizenz üblich, für ein späteres Produkt eher nicht. Die Entscheidung als ADR festhalten und im README eintragen.
-6. **`main` schützen:** Änderungen nur per Pull Request, Status-Prüfungen `secret-scan` und `commit-messages` verlangen.
+6. **`main` schützen:** Ein Befehl legt das Ruleset an (Pull Request Pflicht, Prüfungen `gitleaks` und `commit-messages` Pflicht, kein Force-Push, kein Löschen): `powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\protect-main.ps1`. Das Ruleset wird nicht mit der Vorlage kopiert, deshalb braucht jedes neue Repo diesen Schritt einmal.
 7. **Ersten Lerntagebuch-Eintrag** anlegen (`docs/lerntagebuch/`).
 
 ## Was die Vorlage enthält und warum
@@ -23,5 +23,6 @@ Diese Anleitung steht in jedem Projekt, das aus der Vorlage entsteht. Sie wird n
 | `.github/workflows/secret-scan.yml` | Wiederholt beide Prüfungen auf dem Server, falls ein Hook lokal übersprungen wurde |
 | `.github/pull_request_template.md` | Fertig-Checkliste in jedem Pull Request |
 | `.gitattributes` | Hält Shell-Skripte und Hooks auf LF-Zeilenenden; unter Windows laufen sie sonst nicht |
+| `scripts/protect-main.ps1` | Legt das Ruleset an, das `main` schützt (Pull Request und Prüfungen Pflicht) |
 | `.gitignore` | Schließt Geheimnisse, Build-Ausgaben und lokale Dateien aus |
 | `docs/` | Doku-Struktur, ADR-Vorlage und Lerntagebuch |
